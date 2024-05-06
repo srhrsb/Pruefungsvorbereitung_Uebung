@@ -1,9 +1,104 @@
 package view;
 
-public class MainView {
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
+import java.awt.event.ActionListener;
+
+public class MainView extends JFrame {
+
+    private JTextField roomNumberTf, roomVistorIdTf, visitorIdTf, visitorNameTf, visitorFirstNameTf;
+    private JLabel bedLabel;
+    private JButton getRoomButton, checkinButton, saveVisitorButton;
 
     public MainView(int width, int height){
+        setSize(width, height);
+        setTitle("Hotelmanager");
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        addUIComponents();
+        setVisible(true);
+        pack();
+    }
 
+    private void addUIComponents(){
+        setLayout(new BorderLayout());
+
+        JPanel topPanel = new JPanel();
+
+        JPanel centerPanel = new JPanel();
+        centerPanel.setLayout(new GridLayout(10,2));
+        centerPanel.setBorder(new EmptyBorder(5,5,5,5));
+
+        JPanel bottomPanel = new JPanel();
+
+
+
+        add(topPanel, BorderLayout.NORTH);
+        add(centerPanel, BorderLayout.CENTER);
+        add(bottomPanel,BorderLayout.SOUTH);
+
+        //Button
+        saveVisitorButton = new JButton("Besucher anlegen");
+
+        checkinButton = new JButton("Einchecken");
+        checkinButton.setEnabled(false);
+
+        getRoomButton = new JButton("Zimmer anfordern");
+
+        //Textfields
+        roomNumberTf = new JTextField();
+        roomVistorIdTf = new JTextField();
+        roomVistorIdTf.setEditable(false);
+
+        visitorIdTf = new JTextField();
+        visitorNameTf = new JTextField();
+        visitorFirstNameTf = new JTextField();
+
+        //Label
+        bedLabel = new JLabel();
+
+        //Add UI Components
+        bottomPanel.add(getRoomButton);
+        bottomPanel.add(checkinButton);
+        bottomPanel.add(saveVisitorButton);
+
+        centerPanel.add(new JLabel("Zimmernummer"));
+        centerPanel.add(roomNumberTf);
+
+        centerPanel.add(new JLabel("Bettenanzahl"));
+        centerPanel.add(bedLabel);
+
+        centerPanel.add(new JLabel("Gast-ID"));
+        centerPanel.add(roomVistorIdTf);
+
+
+        //Visitors
+        centerPanel.add(new JLabel());
+        centerPanel.add(new JLabel());
+        centerPanel.add(new JLabel("Gastdaten"));
+        centerPanel.add(new JLabel());
+
+
+        centerPanel.add(new JLabel("Gast-ID"));
+        centerPanel.add(visitorIdTf);
+
+        centerPanel.add(new JLabel("Name"));
+        centerPanel.add(visitorNameTf);
+
+        centerPanel.add(new JLabel("Vorname"));
+        centerPanel.add(visitorFirstNameTf);
+
+
+
+
+    }
+
+    public void addGetRoomHandler(ActionListener listener){
+        getRoomButton.addActionListener(listener);
+    }
+
+    public void addCheckInHandler(ActionListener listener){
+        checkinButton.addActionListener(listener);
     }
 
 

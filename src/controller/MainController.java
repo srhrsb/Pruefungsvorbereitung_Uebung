@@ -4,6 +4,8 @@ import dao.RoomDAO;
 import model.Room;
 import view.MainView;
 
+import java.awt.event.ActionEvent;
+
 public class MainController {
 
     private RoomDAO hotelDB;
@@ -13,8 +15,10 @@ public class MainController {
         this.hotelDB = hotelDB;
         this.mainView = mainView;
 
-        Room room = hotelDB.getRoomByRoomNumber(1);
-        System.out.println(room.getBed());
+        mainView.addGetRoomHandler(this::getRoom);
+
+//        Room room = hotelDB.getRoomByRoomNumber(1);
+//        System.out.println(room.getBed());
     }
 
     public static void main(String[] args) {
@@ -22,4 +26,11 @@ public class MainController {
              new RoomDAO(), new MainView(500, 600)
        );
     }
+
+    public void getRoom( ActionEvent event){
+        //Funktion
+        System.out.println("get room gedrückt");
+
+    }
+
 }
