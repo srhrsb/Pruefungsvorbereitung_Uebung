@@ -93,6 +93,7 @@ public class MainView extends JFrame {
 
     }
 
+    //Eventhandler----------------------------------------------
     public void addGetRoomHandler(ActionListener listener){
         getRoomButton.addActionListener(listener);
     }
@@ -101,8 +102,31 @@ public class MainView extends JFrame {
         checkinButton.addActionListener(listener);
     }
 
+    //<editor-fold desc="Textfield Getter">
 
+    /**
+     * Gets current room number from text field
+     * @return room number
+     */
+    public int getRoomNumberValue(){
 
+        int nr = 0;
+        try {
+            nr = Integer.parseInt( roomNumberTf.getText() );
+            if (nr <= 0){
+                nr = 0;
+                throw new NumberFormatException();
+            }
+        }
+        catch (NumberFormatException e) {
+            System.out.println("Ungültiger Wert für Raumnummer");
+            //Fehlermeldung an Nutzer ausgeben
+        }
+
+        return nr;
+    }
+
+    //</editor-fold>
 
 
 }

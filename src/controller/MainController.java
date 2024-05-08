@@ -27,10 +27,14 @@ public class MainController {
        );
     }
 
+    /**
+     * Obtains the room data of the currently entered room number
+     * and passes it to the user interface
+     * @param event
+     */
     public void getRoom( ActionEvent event){
         //Funktion
-        System.out.println("get room gedrückt");
-
+        int roomNumber = mainView.getRoomNumberValue();
     }
 
 }
