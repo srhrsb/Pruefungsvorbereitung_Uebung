@@ -151,4 +151,25 @@ public class MainView extends JFrame {
     }
 
     //</editor-fold>
+
+    public void showInfoMessage(String message){
+        JOptionPane.showMessageDialog(this, message,"Info",
+                                        JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    public void showErrorMessage(String message){
+        JOptionPane.showMessageDialog(this, message,"Fehler",
+                JOptionPane.ERROR_MESSAGE);
+    }
+
+    public boolean confirmDialog(String message){
+     return JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(
+                this, message,
+                "Bitte bestätigen",
+                JOptionPane.YES_NO_OPTION);
+    }
+
+
+
+
 }

@@ -49,6 +49,7 @@ public class MainController {
                 else{
                     //Raum ist leer
                     //ToDo:Fenstermeldung ausgeben, dass Raum leer ist
+                    mainView.showInfoMessage("Raum ist nicht belegt");
                 }
             }
             else{
