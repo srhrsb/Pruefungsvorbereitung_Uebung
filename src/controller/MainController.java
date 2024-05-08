@@ -33,8 +33,34 @@ public class MainController {
      * @param event
      */
     public void getRoom( ActionEvent event){
-        //Funktion
         int roomNumber = mainView.getRoomNumberValue();
+
+        if(roomNumber > 0){
+            Room room = hotelDB.getRoomByRoomNumber(roomNumber);
+
+            if(room != null){
+                mainView.setBedLabel(room.getBed());
+                mainView.setRoomVisitorIdTf(room.getVisitorId());
+
+                if(room.getVisitorId()!=0){
+                    //Raum ist belegt
+                    //ToDo: Besucherdaten anzeigen
+                }
+                else{
+                    //Raum ist leer
+                    //ToDo:Fenstermeldung ausgeben, dass Raum leer ist
+                }
+            }
+            else{
+                System.out.println("Raum existiert nicht");
+            }
+        }
+        else{
+            System.out.println("Raum existiert nicht");
+        }
+
+
+
     }
 
 }

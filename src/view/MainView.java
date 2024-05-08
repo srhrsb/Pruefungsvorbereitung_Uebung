@@ -128,5 +128,27 @@ public class MainView extends JFrame {
 
     //</editor-fold>
 
+    //<editor-fold desc="Textfield Setter">
 
+    public void setBedLabel( int bedCount ){
+        bedLabel.setText( String.valueOf(bedCount) );
+    }
+
+    public void setRoomVisitorIdTf( int visitorId ){
+        roomVistorIdTf.setText( String.valueOf(visitorId) );
+    }
+
+    public void setVisitorIdTf( int visitorId ){
+        visitorIdTf.setText( String.valueOf(visitorId) );
+    }
+
+    public void setVisitorNameTf( String visitorName ){
+        visitorNameTf.setText( visitorName );
+    }
+
+    public void setVisitorFirstNameTf( String visitorFirstName ){
+        visitorFirstNameTf.setText( visitorFirstName );
+    }
+
+    //</editor-fold>
 }
