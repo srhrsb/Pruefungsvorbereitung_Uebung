@@ -85,8 +85,10 @@ public class MainController {
 //Aufgabe 1
 //ToDo: Holen Sie die ID des Gastes nicht mehr vom Textfeld sondern schreiben Sie
 //ToDo: eine zusätzliche Methode, die aus dem String "Hotel-ID-" und den ersten
-//ToDo: beiden Buchstaben von Vor und Nachnamen und dem aktuellen Datum
-//ToDo: (Stunde, Tag, Monat und Jahr) eine Id erzeugt
+//ToDo: beiden Buchstaben von Vor und Nachnamen und einer 6 stelligen Zufallszahl
+//      eine Id erzeugt
+//ToDo: Sie müssen anschließend alle Typen dieser ID sowie Getter und Setter abändern,
+//TODO: den die ID ist nun ein String
 
 //Aufgabe 2
 //Todo: Tragen Sie die erzeugte GastID auch gleich in beide GastID-Felder ein
