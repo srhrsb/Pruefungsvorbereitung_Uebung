@@ -16,6 +16,7 @@ public class MainController {
         this.mainView = mainView;
 
         mainView.addGetRoomHandler(this::getRoom);
+        mainView.addSaveVisitorHandler(this::saveVisitor);
 
 //        Room room = hotelDB.getRoomByRoomNumber(1);
 //        System.out.println(room.getBed());
@@ -45,10 +46,11 @@ public class MainController {
                 if(room.getVisitorId()!=0){
                     //Raum ist belegt
                     //ToDo: Besucherdaten anzeigen
+
+
                 }
                 else{
                     //Raum ist leer
-                    //ToDo:Fenstermeldung ausgeben, dass Raum leer ist
                     mainView.showInfoMessage("Raum ist nicht belegt");
                 }
             }
@@ -59,9 +61,36 @@ public class MainController {
         else{
             System.out.println("Raum existiert nicht");
         }
-
-
-
     }
 
+    public void saveVisitor(ActionEvent event){
+        int visitorId = mainView.getVisitorIdValue();
+        String name  = mainView.getVisitorName();
+        String firstName  = mainView.getVisitorFirstName();
+
+        if(visitorId > 0){
+            boolean success = hotelDB.addVisitor(visitorId, name, firstName );
+
+            if(success == true){
+                mainView.showInfoMessage("Neuer Gast wurde angelegt:\n"+name+", "+firstName+
+                                         "\nKundennummer: "+visitorId);
+            }
+            else{
+                mainView.showErrorMessage("Neuer Gast konnte nicht angelegt werden");
+            }
+        }
+    }
 }
+
+//Aufgabe 1
+//ToDo: Holen Sie die ID des Gastes nicht mehr vom Textfeld sondern schreiben Sie
+//ToDo: eine zusätzliche Methode, die aus dem String "Hotel-ID-" und den ersten
+//ToDo: beiden Buchstaben von Vor und Nachnamen und dem aktuellen Datum
+//ToDo: (Stunde, Tag, Monat und Jahr) eine Id erzeugt
+
+//Aufgabe 2
+//Todo: Tragen Sie die erzeugte GastID auch gleich in beide GastID-Felder ein
+
+//Aufgabe 3
+//Todo: Ändern Sie anschließend die addVisitorMethode in RoomDAO so ab, dass bei
+//ToDo: bereits vorhandener ID ein Eintrag nicht möglich ist

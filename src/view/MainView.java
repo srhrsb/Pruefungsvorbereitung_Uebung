@@ -102,6 +102,19 @@ public class MainView extends JFrame {
         checkinButton.addActionListener(listener);
     }
 
+    public void addSaveVisitorHandler( ActionListener listener) { saveVisitorButton.addActionListener(listener);}
+
+    //Aufgabe
+    //ToDo: Handler für das anlegen eines Nutzers
+    //ToDo: Getter für Textfelder von Visitor
+    //ToDO: im Controller Funktion für Hinzufügen eines Nutzers
+
+
+
+
+
+
+
     //<editor-fold desc="Textfield Getter">
 
     /**
@@ -125,6 +138,46 @@ public class MainView extends JFrame {
 
         return nr;
     }
+
+    /**
+     * Gets current visitorID from text field
+     * @return visitorID
+     */
+    public int getVisitorIdValue(){
+
+        int nr = 0;
+        try {
+            nr = Integer.parseInt( visitorIdTf.getText() );
+            if (nr <= 0){
+                nr = 0;
+                throw new NumberFormatException();
+            }
+        }
+        catch (NumberFormatException e) {
+            System.out.println("Ungültiger Wert für VisitorID");
+            //Fehlermeldung an Nutzer ausgeben
+        }
+        return nr;
+    }
+
+    /**
+     * Gets Visitor Name from text field
+     * @return name
+     */
+    public String getVisitorName(){
+           return visitorNameTf.getText();
+    }
+
+    /**
+     * Gets Visitor First Name from text field
+     * @return name
+     */
+    public String getVisitorFirstName(){
+        return visitorFirstNameTf.getText();
+    }
+
+
+
 
     //</editor-fold>
 
