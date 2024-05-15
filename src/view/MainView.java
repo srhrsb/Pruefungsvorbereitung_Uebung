@@ -143,21 +143,8 @@ public class MainView extends JFrame {
      * Gets current visitorID from text field
      * @return visitorID
      */
-    public int getVisitorIdValue(){
-
-        int nr = 0;
-        try {
-            nr = Integer.parseInt( visitorIdTf.getText() );
-            if (nr <= 0){
-                nr = 0;
-                throw new NumberFormatException();
-            }
-        }
-        catch (NumberFormatException e) {
-            System.out.println("Ungültiger Wert für VisitorID");
-            //Fehlermeldung an Nutzer ausgeben
-        }
-        return nr;
+    public String getVisitorIdValue(){
+        return visitorIdTf.getText();
     }
 
     /**
@@ -177,8 +164,6 @@ public class MainView extends JFrame {
     }
 
 
-
-
     //</editor-fold>
 
     //<editor-fold desc="Textfield Setter">
@@ -187,8 +172,8 @@ public class MainView extends JFrame {
         bedLabel.setText( String.valueOf(bedCount) );
     }
 
-    public void setRoomVisitorIdTf( int visitorId ){
-        roomVistorIdTf.setText( String.valueOf(visitorId) );
+    public void setRoomVisitorIdTf( String visitorId ){
+        roomVistorIdTf.setText( visitorId );
     }
 
     public void setVisitorIdTf( int visitorId ){

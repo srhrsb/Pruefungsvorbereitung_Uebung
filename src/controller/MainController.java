@@ -43,7 +43,7 @@ public class MainController {
                 mainView.setBedLabel(room.getBed());
                 mainView.setRoomVisitorIdTf(room.getVisitorId());
 
-                if(room.getVisitorId()!=0){
+                if(room.getVisitorId().contains("Hotel-ID-")){
                     //Raum ist belegt
                     //ToDo: Besucherdaten anzeigen
 
@@ -64,11 +64,12 @@ public class MainController {
     }
 
     public void saveVisitor(ActionEvent event){
-        int visitorId = mainView.getVisitorIdValue();
+
         String name  = mainView.getVisitorName();
         String firstName  = mainView.getVisitorFirstName();
+        String visitorId = createVisitorId(name, firstName);
 
-        if(visitorId > 0){
+        if( visitorId.contains("Hotel-ID-") ){
             boolean success = hotelDB.addVisitor(visitorId, name, firstName );
 
             if(success == true){
@@ -79,6 +80,10 @@ public class MainController {
                 mainView.showErrorMessage("Neuer Gast konnte nicht angelegt werden");
             }
         }
+    }
+
+    public String createVisitorId( String name, String firstName){
+        return "Hotel-ID-" + name.substring(0,2) + firstName.substring(0,2) + (int)(Math.random() * 999999 );
     }
 }
 
@@ -96,3 +101,5 @@ public class MainController {
 //Aufgabe 3
 //Todo: Ändern Sie anschließend die addVisitorMethode in RoomDAO so ab, dass bei
 //ToDo: bereits vorhandener ID ein Eintrag nicht möglich ist
+
+

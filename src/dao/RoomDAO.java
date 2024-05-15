@@ -16,11 +16,11 @@ public class RoomDAO {
          addRoom(3,4);
          addRoom(4, 1);
 
-         addVisitor(1, "Glunk","Frank");
-         addVisitor(2, "Dittmar","Till");
-         addVisitor(3, "Jovanova","Jana");
-         addVisitor(4, "Tetteh","Jonathan");
-         addVisitor(5, "Hollmann","Tilman");
+         addVisitor("Hotel-ID-GlFr123456", "Glunk","Frank");
+         addVisitor("Hotel-ID-DiTi123456", "Dittmar","Till");
+         addVisitor("Hotel-ID-JoJa123456", "Jovanova","Jana");
+         addVisitor("Hotel-ID-TeJo123456", "Tetteh","Jonathan");
+         addVisitor("Hotel-ID-HoTi123456", "Hollmann","Tilman");
     }
 
     public boolean addRoom( int roomNumber, int bed){
@@ -29,7 +29,7 @@ public class RoomDAO {
         return changed;
     }
 
-    public boolean addVisitor( int visitorId, String name, String firstName ){
+    public boolean addVisitor( String visitorId, String name, String firstName ){
         Visitor visitor = new Visitor(visitorId, name, firstName);
         boolean changed = visitors.add(visitor);
         return changed;

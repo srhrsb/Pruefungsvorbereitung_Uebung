@@ -4,12 +4,12 @@ public class Room {
 
     private int roomNumber;
     private int bed;
-    private int visitorId;
+    private String visitorId;
 
     public Room(int roomNumber, int bed) {
         this.roomNumber = roomNumber;
         this.bed = bed;
-        this.visitorId = 0;
+        this.visitorId = null;
     }
 
     public int getRoomNumber() {
@@ -28,11 +28,11 @@ public class Room {
         this.bed = bed;
     }
 
-    public int getVisitorId() {
+    public String getVisitorId() {
         return visitorId;
     }
 
-    public void setVisitorId(int visitorId) {
+    public void setVisitorId(String visitorId) {
         this.visitorId = visitorId;
     }
 }

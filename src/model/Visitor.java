@@ -2,21 +2,21 @@ package model;
 
 public class Visitor {
 
-    private int id;
+    private String id;
     private String name;
     private String firstName;
 
-    public Visitor(int id, String name, String firstName) {
+    public Visitor(String id, String name, String firstName) {
         this.id = id;
         this.name = name;
         this.firstName = firstName;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
