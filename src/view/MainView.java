@@ -176,8 +176,8 @@ public class MainView extends JFrame {
         roomVistorIdTf.setText( visitorId );
     }
 
-    public void setVisitorIdTf( int visitorId ){
-        visitorIdTf.setText( String.valueOf(visitorId) );
+    public void setVisitorIdTf( String visitorId ){
+        visitorIdTf.setText( visitorId );
     }
 
     public void setVisitorNameTf( String visitorName ){

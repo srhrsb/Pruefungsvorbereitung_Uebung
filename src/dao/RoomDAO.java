@@ -30,9 +30,21 @@ public class RoomDAO {
     }
 
     public boolean addVisitor( String visitorId, String name, String firstName ){
+        if (!visitorIdIsUnique(visitorId))
+            return false;
+
         Visitor visitor = new Visitor(visitorId, name, firstName);
         boolean changed = visitors.add(visitor);
         return changed;
+    }
+
+    private boolean visitorIdIsUnique( String visitorId){
+        for (var visitor : visitors){
+            if( visitor.getId() == visitorId){
+               return false;
+            }
+        }
+        return true;
     }
 
     public Room getRoomByRoomNumber( int roomNumber){

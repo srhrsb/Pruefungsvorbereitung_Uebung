@@ -75,6 +75,8 @@ public class MainController {
             if(success == true){
                 mainView.showInfoMessage("Neuer Gast wurde angelegt:\n"+name+", "+firstName+
                                          "\nKundennummer: "+visitorId);
+                mainView.setVisitorIdTf( visitorId );
+                mainView.setRoomVisitorIdTf( visitorId );
             }
             else{
                 mainView.showErrorMessage("Neuer Gast konnte nicht angelegt werden");
@@ -83,7 +85,9 @@ public class MainController {
     }
 
     public String createVisitorId( String name, String firstName){
-        return "Hotel-ID-" + name.substring(0,2) + firstName.substring(0,2) + (int)(Math.random() * 999999 );
+return "Hotel-ID-1";
+//         return "Hotel-ID-" + name.substring(0,2) + firstName.substring(0,2)
+//               + (int)(Math.random() * 999999 );
     }
 }
 
@@ -102,4 +106,8 @@ public class MainController {
 //Todo: Ändern Sie anschließend die addVisitorMethode in RoomDAO so ab, dass bei
 //ToDo: bereits vorhandener ID ein Eintrag nicht möglich ist
 
-
+//Aufgabe 4
+//Fügen Sie einen Button hinzu "Benutzer löschen"
+//und sorgen Sie dafür, dass der Nutzer mit der eingegebenen ID gelöscht wird.
+//Holen Sie zuvor die Einwilligung ein und zeigen Sie dazu auch schon alle Daten des Nutzers an
+//Löschen Sie den Nutzer nur nach Bestätigung, ansonsten nicht.
