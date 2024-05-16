@@ -12,6 +12,8 @@ public class MainView extends JFrame {
 
     private JTextField roomNumberTf, roomVistorIdTf, visitorIdTf, visitorNameTf, visitorFirstNameTf;
     private JLabel bedLabel;
+
+    private JRadioButton visitorVIPRadioButton, visitorRadioButton;
     private JButton getRoomButton, checkinButton, saveVisitorButton, deleteVisitorButton;
 
     private JComboBox<RoomType> roomTypeComboBox;
@@ -35,7 +37,7 @@ public class MainView extends JFrame {
         centerPanel.setBorder(new EmptyBorder(5,5,5,5));
 
         JPanel bottomPanel = new JPanel();
-
+        JPanel radioPanel = new JPanel();
 
 
         add(topPanel, BorderLayout.NORTH);
@@ -50,6 +52,14 @@ public class MainView extends JFrame {
 
         getRoomButton = new JButton("Zimmer anfordern");
         deleteVisitorButton = new JButton("Gastdaten löschen");
+
+        //RadioButtons
+        visitorRadioButton = new JRadioButton("Gast", true);
+        visitorVIPRadioButton = new JRadioButton("VIP");
+
+        ButtonGroup group = new ButtonGroup();
+        group.add(visitorRadioButton);
+        group.add(visitorVIPRadioButton);
 
         //Textfields
         roomNumberTf = new JTextField();
@@ -69,6 +79,8 @@ public class MainView extends JFrame {
         bottomPanel.add(checkinButton);
         bottomPanel.add(saveVisitorButton);
         bottomPanel.add(deleteVisitorButton);
+
+
 
         centerPanel.add(new JLabel("Zimmernummer"));
         centerPanel.add(roomNumberTf);
@@ -97,9 +109,10 @@ public class MainView extends JFrame {
         centerPanel.add(new JLabel("Vorname"));
         centerPanel.add(visitorFirstNameTf);
 
-
-
-
+        centerPanel.add(new JLabel("Besonderheiten"));
+        radioPanel.add(visitorRadioButton);
+        radioPanel.add(visitorVIPRadioButton);
+        centerPanel.add(radioPanel);
     }
 
     //Eventhandler----------------------------------------------
