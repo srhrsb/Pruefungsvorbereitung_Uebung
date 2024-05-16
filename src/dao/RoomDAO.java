@@ -15,6 +15,7 @@ public interface RoomDAO {
     public Room getRoomByRoomNumber( int roomNumber);
 
     public Visitor getVisitorById( String visitorId );
+    public boolean checkIn( int roomNumber, String visitorId);
 
     public  boolean deleteVisitorById( String visitorId );
 

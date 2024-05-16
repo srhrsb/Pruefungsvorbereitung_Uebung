@@ -213,6 +213,10 @@ public class MainView extends JFrame {
 
     //</editor-fold>
 
+    public void enableCheckIn( boolean enabled ){
+        checkinButton.setEnabled( enabled );
+    }
+
     public void showInfoMessage(String message){
         JOptionPane.showMessageDialog(this, message,"Info",
                                         JOptionPane.INFORMATION_MESSAGE);

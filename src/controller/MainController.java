@@ -20,6 +20,7 @@ public class MainController {
         mainView.addGetRoomHandler(this::getRoom);
         mainView.addSaveVisitorHandler(this::saveVisitor);
         mainView.addDeleteVisitorHandler(this::deleteVisitor);
+        mainView.addCheckInHandler(this::checkIn);
 
 //        Room room = hotelDB.getRoomByRoomNumber(1);
 //        System.out.println(room.getBed());
@@ -46,14 +47,25 @@ public class MainController {
                 mainView.setBedComboBox( room.getBed() );
                 mainView.setRoomVisitorIdTf(room.getVisitorId());
 
-                if(room.getVisitorId().contains("Hotel-ID-")){
+                if(room.getVisitorId() != null && room.getVisitorId().contains("Hotel-ID-")){
 
                     //ToDo: Besucherdaten anzeigen
+                    String visitorId = room.getVisitorId();
+                    Visitor visitor = hotelDB.getVisitorById(visitorId);
 
-
+                    if(visitor != null){
+                        mainView.setRoomVisitorIdTf(visitorId);
+                        mainView.setVisitorIdTf(visitorId);
+                        mainView.setVisitorNameTf(visitor.getName());
+                        mainView.setVisitorFirstNameTf(visitor.getFirstName());
+                    }
                 }
                 else{
                     mainView.showInfoMessage("Raum ist nicht belegt");
+                    mainView.setVisitorNameTf("");
+                    mainView.setVisitorFirstNameTf("");
+                    mainView.setVisitorIdTf("");
+                    mainView.setRoomVisitorIdTf("");
                 }
             }
             else{
@@ -71,7 +83,7 @@ public class MainController {
         String firstName  = mainView.getVisitorFirstName();
         String visitorId = createVisitorId(name, firstName);
 
-        if( visitorId.contains("Hotel-ID-") ){
+        if( visitorId != null && visitorId.contains("Hotel-ID-") ){
             boolean success = hotelDB.addVisitor(visitorId, name, firstName );
 
             if(success){
@@ -79,6 +91,7 @@ public class MainController {
                                          "\nKundennummer: "+visitorId);
                 mainView.setVisitorIdTf( visitorId );
                 mainView.setRoomVisitorIdTf( visitorId );
+                mainView.enableCheckIn(true);
             }
             else{
                 mainView.showErrorMessage("Neuer Gast konnte nicht angelegt werden");
@@ -113,6 +126,23 @@ public class MainController {
                           );
              }
          }
+    }
+
+    public void checkIn( ActionEvent event ){
+        String visitorId = mainView.getVisitorIdValue();
+        int roomNumber = mainView.getRoomNumberValue();
+        Room room = hotelDB.getRoomByRoomNumber( roomNumber );
+
+        if(room != null){
+            if( hotelDB.checkIn( roomNumber, visitorId)){
+                mainView.showInfoMessage("Gast mit der Id: "+visitorId+
+                        "erfolgreich eingecheckt"
+                        );
+            }
+            else{
+                mainView.showErrorMessage("Einchecken nicht möglich");
+            }
+        }
     }
 
     public String createVisitorId( String name, String firstName){

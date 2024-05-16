@@ -40,6 +40,16 @@ public class TempRoomDAO implements RoomDAO{
         boolean changed = visitors.add(visitor);
         return changed;
     }
+    @Override
+    public boolean checkIn( int roomNumber, String visitorId){
+        for (var room : rooms){
+            if(room.getRoomNumber()==(roomNumber)){
+                room.setVisitorId( visitorId );
+                return true;
+            }
+        }
+        return false;
+    }
 
     @Override
     public boolean visitorIdIsUnique( String visitorId){
