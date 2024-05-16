@@ -1,5 +1,7 @@
 package view;
 
+import model.RoomType;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
@@ -11,6 +13,8 @@ public class MainView extends JFrame {
     private JTextField roomNumberTf, roomVistorIdTf, visitorIdTf, visitorNameTf, visitorFirstNameTf;
     private JLabel bedLabel;
     private JButton getRoomButton, checkinButton, saveVisitorButton, deleteVisitorButton;
+
+    private JComboBox<RoomType> roomTypeComboBox;
 
     public MainView(int width, int height){
         setSize(width, height);
@@ -58,6 +62,7 @@ public class MainView extends JFrame {
 
         //Label
         bedLabel = new JLabel();
+        roomTypeComboBox = new JComboBox<RoomType>( RoomType.values() );
 
         //Add UI Components
         bottomPanel.add(getRoomButton);
@@ -69,7 +74,8 @@ public class MainView extends JFrame {
         centerPanel.add(roomNumberTf);
 
         centerPanel.add(new JLabel("Bettenanzahl"));
-        centerPanel.add(bedLabel);
+        //centerPanel.add(bedLabel);
+        centerPanel.add(roomTypeComboBox);
 
         centerPanel.add(new JLabel("Gast-ID"));
         centerPanel.add(roomVistorIdTf);
@@ -170,6 +176,10 @@ public class MainView extends JFrame {
 
     public void setBedLabel( int bedCount ){
         bedLabel.setText( String.valueOf(bedCount) );
+    }
+
+    public void setBedComboBox( RoomType bed ){
+        roomTypeComboBox.setSelectedItem( bed );
     }
 
     public void setRoomVisitorIdTf( String visitorId ){

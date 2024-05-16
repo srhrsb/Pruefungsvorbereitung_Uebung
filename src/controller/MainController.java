@@ -1,6 +1,7 @@
 package controller;
 
 import dao.RoomDAO;
+import dao.TempRoomDAO;
 import model.Room;
 import model.Visitor;
 import view.MainView;
@@ -26,7 +27,7 @@ public class MainController {
 
     public static void main(String[] args) {
        new MainController(
-             new RoomDAO(), new MainView(500, 600)
+             new TempRoomDAO(), new MainView(500, 600)
        );
     }
 
@@ -42,7 +43,7 @@ public class MainController {
             Room room = hotelDB.getRoomByRoomNumber(roomNumber);
 
             if(room != null){
-                mainView.setBedLabel(room.getBed());
+                mainView.setBedComboBox( room.getBed() );
                 mainView.setRoomVisitorIdTf(room.getVisitorId());
 
                 if(room.getVisitorId().contains("Hotel-ID-")){

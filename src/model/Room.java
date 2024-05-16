@@ -3,10 +3,10 @@ package model;
 public class Room {
 
     private int roomNumber;
-    private int bed;
+    private RoomType bed;
     private String visitorId;
 
-    public Room(int roomNumber, int bed) {
+    public Room(int roomNumber, RoomType bed) {
         this.roomNumber = roomNumber;
         this.bed = bed;
         this.visitorId = null;
@@ -20,11 +20,11 @@ public class Room {
         this.roomNumber = roomNumber;
     }
 
-    public int getBed() {
+    public RoomType getBed() {
         return bed;
     }
 
-    public void setBed(int bed) {
+    public void setBed(RoomType bed) {
         this.bed = bed;
     }
 
