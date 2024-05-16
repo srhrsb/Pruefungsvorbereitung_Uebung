@@ -5,6 +5,7 @@ import model.Visitor;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class RoomDAO {
     private List<Room> rooms = new ArrayList<>();
@@ -40,7 +41,7 @@ public class RoomDAO {
 
     private boolean visitorIdIsUnique( String visitorId){
         for (var visitor : visitors){
-            if( visitor.getId() == visitorId){
+            if( visitorId.equals(visitor.getId()) ){
                return false;
             }
         }
@@ -55,4 +56,23 @@ public class RoomDAO {
         }
         return null;
     }
+
+    public Visitor getVisitorById( String visitorId ){
+        for (var visitor : visitors){
+            if(visitor.getId().equals(visitorId)){
+                return visitor;
+            }
+        }
+        return null;
+    }
+
+    public  boolean deleteVisitorById( String visitorId ){
+        for (var visitor : visitors){
+            if(visitor.getId().equals(visitorId)){
+               return visitors.remove(visitor);
+            }
+        }
+        return false;
+    }
+
 }

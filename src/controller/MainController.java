@@ -2,6 +2,7 @@ package controller;
 
 import dao.RoomDAO;
 import model.Room;
+import model.Visitor;
 import view.MainView;
 
 import java.awt.event.ActionEvent;
@@ -17,6 +18,7 @@ public class MainController {
 
         mainView.addGetRoomHandler(this::getRoom);
         mainView.addSaveVisitorHandler(this::saveVisitor);
+        mainView.addDeleteVisitorHandler(this::deleteVisitor);
 
 //        Room room = hotelDB.getRoomByRoomNumber(1);
 //        System.out.println(room.getBed());
@@ -44,13 +46,12 @@ public class MainController {
                 mainView.setRoomVisitorIdTf(room.getVisitorId());
 
                 if(room.getVisitorId().contains("Hotel-ID-")){
-                    //Raum ist belegt
+
                     //ToDo: Besucherdaten anzeigen
 
 
                 }
                 else{
-                    //Raum ist leer
                     mainView.showInfoMessage("Raum ist nicht belegt");
                 }
             }
@@ -72,7 +73,7 @@ public class MainController {
         if( visitorId.contains("Hotel-ID-") ){
             boolean success = hotelDB.addVisitor(visitorId, name, firstName );
 
-            if(success == true){
+            if(success){
                 mainView.showInfoMessage("Neuer Gast wurde angelegt:\n"+name+", "+firstName+
                                          "\nKundennummer: "+visitorId);
                 mainView.setVisitorIdTf( visitorId );
@@ -84,10 +85,40 @@ public class MainController {
         }
     }
 
+    public void deleteVisitor(ActionEvent event){
+
+         String visitorId = mainView.getVisitorIdValue();
+         Visitor visitor = hotelDB.getVisitorById( visitorId );
+
+         if(visitor == null){
+             mainView.showInfoMessage("Ein Gast mit der ID: "
+                      +visitorId+ " ist nicht eingetragen");
+
+             return;
+         }
+
+         String text = "Soll dieser Nutzer wirklich gelöscht werden?\n" +
+                       "Id: "+visitor.getId() + "\n"+
+                       "Name: "+visitor.getName() +"\n"+
+                       "Vorname: "+visitor.getFirstName() +"\n";
+
+         if(mainView.confirmDialog(text)){
+             if(hotelDB.deleteVisitorById(visitorId)){
+                 mainView.showInfoMessage("Der Nutzer wurde gelöscht");
+             }
+             else{
+                 mainView.showErrorMessage(
+                         "Der Nutzer konnte nicht gelöscht werden"
+                          );
+             }
+         }
+    }
+
     public String createVisitorId( String name, String firstName){
-return "Hotel-ID-1";
-//         return "Hotel-ID-" + name.substring(0,2) + firstName.substring(0,2)
-//               + (int)(Math.random() * 999999 );
+
+         return "Hotel-ID-" + name.substring(0,2)
+                 + firstName.substring(0,2)
+                 + (int)(Math.random() * 999999 );
     }
 }
 

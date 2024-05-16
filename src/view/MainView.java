@@ -3,13 +3,14 @@ package view;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class MainView extends JFrame {
 
     private JTextField roomNumberTf, roomVistorIdTf, visitorIdTf, visitorNameTf, visitorFirstNameTf;
     private JLabel bedLabel;
-    private JButton getRoomButton, checkinButton, saveVisitorButton;
+    private JButton getRoomButton, checkinButton, saveVisitorButton, deleteVisitorButton;
 
     public MainView(int width, int height){
         setSize(width, height);
@@ -44,6 +45,7 @@ public class MainView extends JFrame {
         checkinButton.setEnabled(false);
 
         getRoomButton = new JButton("Zimmer anfordern");
+        deleteVisitorButton = new JButton("Gastdaten löschen");
 
         //Textfields
         roomNumberTf = new JTextField();
@@ -61,6 +63,7 @@ public class MainView extends JFrame {
         bottomPanel.add(getRoomButton);
         bottomPanel.add(checkinButton);
         bottomPanel.add(saveVisitorButton);
+        bottomPanel.add(deleteVisitorButton);
 
         centerPanel.add(new JLabel("Zimmernummer"));
         centerPanel.add(roomNumberTf);
@@ -104,16 +107,13 @@ public class MainView extends JFrame {
 
     public void addSaveVisitorHandler( ActionListener listener) { saveVisitorButton.addActionListener(listener);}
 
+    public void addDeleteVisitorHandler( ActionListener listener) { deleteVisitorButton.addActionListener(listener);}
+
+
     //Aufgabe
     //ToDo: Handler für das anlegen eines Nutzers
     //ToDo: Getter für Textfelder von Visitor
     //ToDO: im Controller Funktion für Hinzufügen eines Nutzers
-
-
-
-
-
-
 
     //<editor-fold desc="Textfield Getter">
 
